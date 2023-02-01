@@ -2,21 +2,20 @@
 
 namespace Exercicios_27_01
 {
+    // 1 - Criar uma classe "ContaBancaria" com os seguintes atributos "titular"(nome), 
+    //"numero"(número da conta), "saldo"(saldo atual da conta), "saque"(valor do saque) 
+    //e "limite"(limite de saque).Adicionar métodos get e set para os atributos.Adicionar 
+    //métodos "Depositar"(para depositar dinheiro na conta), "Sacar"(para sacar dinheiro da 
+    //conta) e "ExibirSaldo"(para exibir o saldo atual da conta).
+    //Deve ter um construtor com ou sem parâmetros
+    //O valor limite de saque é de R$500,00 e tem um limite de 3 saques.
+    //Se ultrapassar o limite do valor de saque, exibir o seguinte aviso: 
+    //"VALOR DE SAQUE ULTRAPASSADO"
+    //Se ultrapassar o limite de saques, exibir o seguinte aviso: 
+    //"LIMITE DE SAQUE ULTRAPASSADO"
     internal class Program
     {
-        // 1 - Criar uma classe "ContaBancaria" com os seguintes atributos "titular"(nome), 
-        //"numero"(número da conta), "saldo"(saldo atual da conta), "saque"(valor do saque) 
-        //e "limite"(limite de saque).Adicionar métodos get e set para os atributos.Adicionar 
-        //métodos "Depositar"(para depositar dinheiro na conta), "Sacar"(para sacar dinheiro da 
-        //conta) e "ExibirSaldo"(para exibir o saldo atual da conta).
-        //Deve ter um construtor com ou sem parâmetros
-        //O valor limite de saque é de R$500,00 e tem um limite de 3 saques.
-        //Se ultrapassar o limite do valor de saque, exibir o seguinte aviso: 
-        //"VALOR DE SAQUE ULTRAPASSADO"
-        //Se ultrapassar o limite de saques, exibir o seguinte aviso: 
-        //"LIMITE DE SAQUE ULTRAPASSADO"
-
-        static ContaBancaria contaBancaria;
+       static ContaBancaria contaBancaria;
 
         static Carro carro;
         static void Main(string[] args)
@@ -25,10 +24,12 @@ namespace Exercicios_27_01
             carro = new Carro();
 
             //MenuBancario();
-            MenuCarro();
+            //MenuCarro();
+            //Arquivo();
+            Aluno();
+            
 
-            Console.ReadKey();             
-
+            Console.ReadKey();           
         }
 
         private static void MenuBancario()
@@ -72,11 +73,7 @@ namespace Exercicios_27_01
                 Console.WriteLine(ex.Message);
             }
 
-
         }
-
-
-        private static void MenuCarro()
 
         // 2 - Crie uma classe "Carro" com os seguintes atributos "marca", "modelo", "ano", 
         //"velocidade".Adicionar métodos get e set para os atributos.Adicioanar os métodos
@@ -88,6 +85,8 @@ namespace Exercicios_27_01
         //abaixo ou igual a 0, exibir a seguinte mensagem: "LIMITE DE REDUÇÃO ATINGIDO"
         //Parar só é permitido quando a velocidade for abaixo ou igual a 10, deixar a velocidade
         //com valor 0 e exibir a seguinte mensagem: "CARRO PARADO"
+        private static void MenuCarro()
+       
         {
             try
             {
@@ -123,7 +122,7 @@ namespace Exercicios_27_01
             {
                 Console.WriteLine(ex.Message);
             }
-        }               
+        }
 
         // 3 - Criar uma classe "Aluno" com os seguintes atributos "nome", "matricula", "notas" 
         //e média. O atributo notas deve ser um array contendo as 4 notas do aluno.Adicionar 
@@ -132,8 +131,32 @@ namespace Exercicios_27_01
         //Exibir a mensagem "APROVADO" com média maior e igual que 7
         //"RECUPERAÇAÕ" com a média entre 6 e 5.
         //"REPROVADO" com a média abaixo de 5
-             
-        //DÚVIDA!!!!!!
+
+        private static void Aluno()
+
+        {
+            try
+            {
+                Console.WriteLine("Selecione uma opção:");
+                Console.WriteLine("1 - Calcular média");
+                
+                string opcao = Console.ReadLine();
+                Aluno aluno = new Aluno();
+
+                if (opcao == "1")
+                {
+                    string mensagem = aluno.MediaAluno();
+                    Console.WriteLine(mensagem);
+                }                             
+               
+
+                Aluno();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
 
 
@@ -143,7 +166,40 @@ namespace Exercicios_27_01
         //arquivo Deve ter um construtor com ou sem parâmetros Se não encontrar o arquivo, 
         //deve criar o arquivo
 
-        
+        private static void Arquivo()
+        {
+            Arquivo arquivo = new Arquivo();
+
+            try
+            {
+                Console.WriteLine("Selecione uma opção:");
+                Console.WriteLine("1 - Criar e Escrever");
+                Console.WriteLine("2 - Escrever");
+                
+                string opcao = Console.ReadLine();
+
+
+                if (opcao == "1")
+                {
+                    string mensagem = arquivo.Escrever();
+                    Console.WriteLine(mensagem);
+                }
+
+                if (opcao == "2")
+                {
+                    string mensagem = arquivo.Ler();
+                    Console.WriteLine(mensagem);
+                }
+
+                
+                Arquivo();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }          
 
 
         // 5 - Criar uma classe "Hospedagem" com os seguintes atributos "nomeHotel", "endereco", 
@@ -154,5 +210,5 @@ namespace Exercicios_27_01
         // escolhido no checkIn e checkOut.
 
 
-    }
+    
 }

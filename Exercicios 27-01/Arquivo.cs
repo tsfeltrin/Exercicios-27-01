@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,7 @@ namespace Exercicios_27_01
         string caminhoDoArquivo;
         string nomeDoArquivo;
         string conteudoDoArquivo;
-        string arquivo;
-
+        
         //atributos
         public string CaminhoDoArquivo 
         { 
@@ -38,15 +38,25 @@ namespace Exercicios_27_01
         //métodos
         public string Escrever()
         {
-            if (arquivo == null) 
-            throw new Exception("CRIE O ARQUIVO");
+           bool existe = File.Exists("C:\\Temp\\texto.txt");
+            if (existe == false)
+            {
+                File.Create("C:\\Temp\\texto.txt");
+                return "Arquivo Criado";
+            }
+            
+            else
+            {
+                File.WriteAllText("C:\\Temp\\texto.txt", "qualquer coisa");
+                return "Arquivo escrito";
+            }
 
-            return "ESCREVA O CONTEUDO DO ARQUIVO";
         }       
 
         public string Ler()
         {
-            return "LEIA O CONTEUDO DO ARQUIVO";
+            string conteudo = File.ReadAllText("C:\\Temp\\texto.txt");
+            return conteudo;
         }
 
 

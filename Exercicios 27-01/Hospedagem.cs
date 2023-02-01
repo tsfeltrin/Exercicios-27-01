@@ -10,7 +10,7 @@ namespace Exercicios_27_01
     {
         //atributos
         public string NomeHotel { get; set; }
-        public string Endereço { get; set; }
+        public string Endereco { get; set; }
         public int NumQuartos { get; set; }
         public double PrecoDiaria { get; set; }
         public string Checkin { get; set; }
