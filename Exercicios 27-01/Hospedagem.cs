@@ -13,24 +13,43 @@ namespace Exercicios_27_01
         public string Endereco { get; set; }
         public int NumQuartos { get; set; }
         public double PrecoDiaria { get; set; }
-        public string Checkin { get; set; }
-        public string Checkout { get; set; }
-        public int NumDias { get; set; }
-        public double Valor { get; set; }
+        private DateTime CheckIn { get; set; }
+        private DateTime CheckOut { get; set; }
+        
+        // construtor com parâmetros
+        public Hospedagem(string NomeHotel, string Enderco, int NumQuartos, double PrecoDiaria, DateTime CheckIn, DateTime CheckOut)
+        {
+            this.NomeHotel = NomeHotel;
+            this.Endereco = Enderco;
+            this.NumQuartos = NumQuartos;
+            this.PrecoDiaria = PrecoDiaria;
+            this.CheckIn = CheckIn;
+            this.CheckOut = CheckOut;
+        }
 
+        public Hospedagem() { }
 
         //métodos
-        public int ReservarQuarto()
+        public void ReservarQuarto()
         {
-            return NumQuartos;
+            TimeSpan duracao = CheckOut - CheckIn;
+            int dias = duracao.Days;
+            if (dias > 5)
+            {
+                Console.WriteLine("Não há quartos disponíveis para reserva");
+            }
+            else
+            {
+                Console.WriteLine("Quarto disponível para reserva");
+            }           
         }
 
-        public double CalcularCustos()
+        public void CalcularCustos()
         {
-            int valor = NumQuartos * NumDias;
-            return valor;
-            
+            TimeSpan duracao = CheckOut - CheckIn;
+            int dias = duracao.Days;
+            double custo = dias * PrecoDiaria;
+            Console.WriteLine("Custo total da hospedagem: R$ " + custo);            
         }
-
     }
 }

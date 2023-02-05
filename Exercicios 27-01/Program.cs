@@ -15,21 +15,22 @@ namespace Exercicios_27_01
     //"LIMITE DE SAQUE ULTRAPASSADO"
     internal class Program
     {
-       static ContaBancaria contaBancaria;
+        static ContaBancaria contaBancaria;
 
         static Carro carro;
         static void Main(string[] args)
-        {           
+        {
             contaBancaria = new ContaBancaria();
             carro = new Carro();
 
             //MenuBancario();
             //MenuCarro();
             //Arquivo();
-            Aluno();
-            
+            //Aluno();
+            MenuHospedagem();
 
-            Console.ReadKey();           
+
+            Console.ReadKey();
         }
 
         private static void MenuBancario()
@@ -68,7 +69,7 @@ namespace Exercicios_27_01
 
                 MenuBancario();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -86,7 +87,7 @@ namespace Exercicios_27_01
         //Parar só é permitido quando a velocidade for abaixo ou igual a 10, deixar a velocidade
         //com valor 0 e exibir a seguinte mensagem: "CARRO PARADO"
         private static void MenuCarro()
-       
+
         {
             try
             {
@@ -139,7 +140,7 @@ namespace Exercicios_27_01
             {
                 Console.WriteLine("Selecione uma opção:");
                 Console.WriteLine("1 - Calcular média");
-                
+
                 string opcao = Console.ReadLine();
                 Aluno aluno = new Aluno();
 
@@ -147,8 +148,8 @@ namespace Exercicios_27_01
                 {
                     string mensagem = aluno.MediaAluno();
                     Console.WriteLine(mensagem);
-                }                             
-               
+                }
+
 
                 Aluno();
             }
@@ -175,7 +176,7 @@ namespace Exercicios_27_01
                 Console.WriteLine("Selecione uma opção:");
                 Console.WriteLine("1 - Criar e Escrever");
                 Console.WriteLine("2 - Escrever");
-                
+
                 string opcao = Console.ReadLine();
 
 
@@ -191,7 +192,7 @@ namespace Exercicios_27_01
                     Console.WriteLine(mensagem);
                 }
 
-                
+
                 Arquivo();
             }
             catch (Exception ex)
@@ -199,7 +200,7 @@ namespace Exercicios_27_01
                 Console.WriteLine(ex.Message);
             }
         }
-    }          
+
 
 
         // 5 - Criar uma classe "Hospedagem" com os seguintes atributos "nomeHotel", "endereco", 
@@ -210,5 +211,47 @@ namespace Exercicios_27_01
         // escolhido no checkIn e checkOut.
 
 
-    
+        private static void MenuHospedagem()
+        {
+
+            try
+            {
+                Console.WriteLine("1 - Selecione a data de checkin: ");
+
+                string dataCheckIn = Console.ReadLine();
+
+                string[] data = dataCheckIn.Split("/");
+
+
+                DateTime checkIn = new DateTime(Convert.ToInt32(data[2]), Convert.ToInt32(data[1]), Convert.ToInt32(data[0]));
+
+
+                Console.WriteLine("2 - Selecione a data de checkout: ");
+                string dataCheckOut = Console.ReadLine();
+
+                string[] dataOut = dataCheckOut.Split("/");
+
+
+                DateTime checkOut = new DateTime(Convert.ToInt32(dataOut[2]), Convert.ToInt32(dataOut[1]), Convert.ToInt32(dataOut[0]));
+
+                Hospedagem hospedagem = new Hospedagem(
+                "Bela Vista",
+                "Rua Alfa",
+                2,
+                180.50,
+                checkIn,
+                checkOut);
+
+                hospedagem.ReservarQuarto();
+
+                hospedagem.CalcularCustos();
+
+                MenuHospedagem();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+    }
 }
